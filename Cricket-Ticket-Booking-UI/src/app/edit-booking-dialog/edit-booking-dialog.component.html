@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Edit Booking</h2>
+<mat-dialog-content>
+  <form [formGroup]="editBookingForm">
+    <mat-form-field class="w-full">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" readonly>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Booking Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="bookingDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Seats</mat-label>
+      <input matInput formControlName="seats">
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Seat ID</mat-label>
+      <input matInput formControlName="seatId" readonly>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="warn" (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onSave()">Save</button>
+</mat-dialog-actions>

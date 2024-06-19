@@ -1,0 +1,35 @@
+.footer {
+    margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .toolbar {
+    background-color: #1976d2; /* Primary color */
+  }
+  
+  .footer-content {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+  }
+  
+  .footer-content span {
+    margin: 0 10px;
+  }
+  
+  .footer-content a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer-content a:hover {
+    text-decoration: underline;
+  }
+  

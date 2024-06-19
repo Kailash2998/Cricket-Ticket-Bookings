@@ -1,0 +1,78 @@
+.custom-toolbar {
+    background-color: #125653; 
+    color: #ffffff; 
+}
+
+.custom-toolbar a {
+    color: inherit; 
+}
+
+.custom-toolbar .mat-icon {
+    color: inherit; 
+}
+.custom-toolbar {
+    background-color: #125653; 
+    color: #ffffff; 
+}
+
+.custom-toolbar a {
+    color: inherit; 
+}
+
+.custom-toolbar .mat-icon {
+    color: inherit; 
+}
+
+
+
+.mdc-list {
+    margin: 0;
+    list-style-type: none;
+  
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.fixed-width {
+    width: 250px; 
+}
+
+.main-content {
+    flex: 1; 
+    padding-left: 250px; 
+    box-sizing: border-box;
+}
+
+.content {
+    padding: 20px;
+}
+
+.mat-drawer-inner-container {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 70px;
+}
+
+
+
+  mat-nav-list{
+    position: fixed;
+    top: 64px; 
+    
+    width: 200px; 
+    border-left: 1px solid #ccc;
+  }
+
+::ng-deep .mat-drawer-inner-container {
+    overflow: hidden !important;
+}
+
+.custom-toolbar{
+    position: fixed;
+}
+
+

@@ -1,0 +1,91 @@
+<div>
+    <!-- Toolbar -->
+    <mat-toolbar class="custom-toolbar" style="padding: 10px 50px;">
+        <!-- Toggle Button -->
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <a routerLink="/">Cricket</a>
+        <div class="w-full"></div>
+
+        <!-- Logged In -->
+        <ng-container *ngIf="isLoggedIn(); else loggedOut">
+            <div *ngIf="authService.getUserDetail() as userDetail">
+                <div class="flex gap-5 items-center">
+                    <!-- User Profile -->
+                    <a [matMenuTriggerFor]="menu" class="flex gap-2 cursor-pointer items-center">
+                        <div
+                            class="bg-red-500 text-white font-bold shadow-md rounded-full w-5 h-5 p-5 flex justify-center items-center">
+                            {{userDetail.email[0].toUpperCase()}}
+                        </div>
+                        <div class="text-white flex flex-col">
+                            <h1 class="p-0 m-0 font-medium">{{ userDetail.firstName }}</h1>
+                            <p class="p-0 m-0 font-medium text-xs">{{ userDetail.roles }}</p>
+                        </div>
+                    </a>
+                    <!-- User Menu -->
+                    <mat-menu #menu="matMenu">
+                        <button [routerLink]="['/account', 1]" mat-menu-item>
+                            <mat-icon>account_circle</mat-icon>
+                            <span>View Profile</span>
+                        </button>
+                        <button (click)="logout()" mat-menu-item>
+                            <mat-icon>logout</mat-icon>
+                            <span>Logout</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Logged Out -->
+        <ng-template #loggedOut>
+            <div class="flex gap-5 items-center">
+                <a mat-button routerLink="/login">Login</a>
+                <a mat-button routerLink="/register">Register</a>
+            </div>
+        </ng-template>
+    </mat-toolbar>
+
+   <!-- Side Navbar -->
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" opened="true">
+        <mat-nav-list>
+            <ng-container *ngIf="isAdmin()">
+                <a mat-list-item routerLink="/users">
+                    <mat-icon>group</mat-icon>
+                    Users
+                </a>
+                <a mat-list-item routerLink="/roles">
+                    <mat-icon>settings</mat-icon>
+                    Roles
+                </a>
+                <a mat-list-item routerLink="/matches">
+                    <mat-icon>event</mat-icon>
+                    Matches
+                </a>
+                <a mat-list-item routerLink="/seats">
+                    <mat-icon>airline_seat_individual_suite</mat-icon>
+                    Seats
+                </a>
+                <a mat-list-item routerLink="/bookings">
+                    <mat-icon>book</mat-icon>
+                    Bookings
+                </a>
+            </ng-container>
+            <!-- Display when logged out -->
+            <ng-container *ngIf="!isLoggedIn()">
+                <a mat-list-item routerLink="/login">
+                    <mat-icon>login</mat-icon>
+                    Login
+                </a>
+                <a mat-list-item routerLink="/register">
+                    <mat-icon>person_add</mat-icon>
+                    Register
+                </a>
+            </ng-container>
+        </mat-nav-list>
+    </mat-sidenav>
+</mat-sidenav-container>
+
+</div>

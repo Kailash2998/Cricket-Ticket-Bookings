@@ -1,0 +1,19 @@
+<h2 mat-dialog-title class="text-center">Edit Seat</h2>
+<div mat-dialog-content class="edit-seat-content">
+  <form [formGroup]="seatForm" class="edit-form">
+    <mat-form-field class="input-field">
+      <mat-label>Seat Number</mat-label>
+      <input matInput formControlName="seatNumber" placeholder="Enter seat number">
+    </mat-form-field>
+
+    <mat-form-field class="input-field">
+      <mat-label>Price</mat-label>
+      <input matInput formControlName="price" placeholder="Enter price" type="number">
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions class="edit-seat-actions">
+  <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" [disabled]="seatForm.invalid" (click)="save()">Update</button>
+</div>

@@ -1,0 +1,31 @@
+<div class="border-slate-100 border-b p-3 fl gap-2 justify-between" style="margin: 50px; overflow: hidden;">
+  <button mat-raised-button color="primary" class="Create" (click)="createNewSeat()">Create New Seat</button>
+
+  <table class="text-left w-full border">
+    <thead>
+      <tr class="px-5 mt-1">
+        <th class="border p-2">Seat Id</th>
+        <th class="border p-2">Seat Number</th>
+        <th class="border p-2">Price</th>
+        <th class="border p-2">Status</th>
+        <th class="border p-2">Match ID</th>
+        <th class="border p-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let seat of pagedSeats">
+        <td class="border p-3">{{ seat.seatId }}</td>
+        <td class="border p-3">{{ seat.seatNumber }}</td>
+        <td class="border p-3">{{ seat.price }}</td>
+        <td class="border p-3">{{ seat.isBooked ? 'Booked' : 'Available' }}</td>
+        <td class="border p-3">{{ seat.matchId }}</td>
+        <td class="border p-3 flex items-center gap-5">
+          <button mat-button (click)="editSeat(seat)">Edit</button>
+          <button mat-button color="warn" (click)="deleteSeat(seat)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <mat-paginator [pageSize]="pageSize" [length]="totalItems" (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

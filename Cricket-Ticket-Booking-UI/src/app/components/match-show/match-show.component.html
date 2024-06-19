@@ -1,0 +1,23 @@
+<div class="container mx-auto px-4" style="margin: 70px;">
+    <h2 class="text-3xl font-semibold mb-8">Matches</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div *ngFor="let match of pagedMatches; trackBy: trackById">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h3 class="font-semibold text-xl mb-2">{{ match.title }}</h3>
+                    <p class="text-gray-700 mb-2">Start Date: {{ match.startDateTime | date: 'medium' }}</p>
+                    <p class="text-gray-700 mb-4">End Date: {{ match.endDateTime | date: 'medium' }}</p>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-blue-600 hover:underline">View Details</a>
+                        <button (click)="bookNow(match.matchId)"
+                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md hover:shadow-lg">Book
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MatPaginator for pagination -->
+    <mat-paginator [pageSize]="pageSize" [length]="totalItems" (page)="onPageChange($event)">
+    </mat-paginator>
+</div>

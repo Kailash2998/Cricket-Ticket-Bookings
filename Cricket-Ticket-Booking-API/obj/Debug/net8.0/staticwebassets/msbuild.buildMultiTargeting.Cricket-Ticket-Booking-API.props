@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Cricket-Ticket-Booking-API.props" />
+</Project>

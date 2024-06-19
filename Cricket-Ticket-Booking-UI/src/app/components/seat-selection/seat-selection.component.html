@@ -1,0 +1,60 @@
+<div class="container mx-auto px-4">
+  <h2 class="text-2xl font-semibold mb-4">Select Seats</h2>
+  <div *ngIf="availableSeats.length > 0; else noSeats">
+    <div class="grid grid-cols-4 gap-4">
+      <div *ngFor="let seat of availableSeats" (click)="toggleSeatSelection(seat)"
+        [class.selected]="isSeatSelected(seat)" class="cursor-pointer p-2 border rounded hover:bg-gray-200 text-center">
+        <span class="block text-lg">{{ seat.seatNumber }}</span>
+        <span class="block text-sm text-gray-500 mt-1">$ {{ seat.price }}</span>
+      </div>
+    </div>
+  </div>
+  <ng-template #noSeats>
+    <p class="text-gray-600">No seats available for this match.</p>
+  </ng-template>
+  <div class="mt-6 flex justify-end">
+    <button (click)="cancelSelection()"
+      class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded mr-2">Cancel</button>
+    <button mat-button color="warn" (click)="closeModal()">Close Modal</button>
+    <button *ngIf="selectedSeats.length > 0" (click)="continueSelection()"
+      class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded ml-2">Continue</button>
+  </div>
+
+  <div *ngIf="showSummary" class="mt-8 p-6 border rounded bg-gray-100">
+    <h3 class="text-xl font-semibold mb-4">Selected Seats</h3>
+    <ul class="divide-y divide-gray-300">
+      <li *ngFor="let seat of selectedSeats" class="py-2 flex justify-between items-center">
+        <span>{{ seat.seatNumber }}</span>
+        <span>$ {{ seat.price }}</span>
+      </li>
+    </ul>
+    <div class="flex justify-between items-center mt-4">
+      <span class="font-semibold">Total Price:</span>
+      <span class="font-semibold">$ {{ totalPrice }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="bookingConfirmed"
+    class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white p-8 rounded shadow-md text-center">
+      <p class="text-2xl font-semibold mb-4">Thank You!</p>
+      <p class="text-gray-800">Your booking has been confirmed.</p>
+      <button mat-button color="primary" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <div *ngIf="bookingFailed"
+    class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white p-8 rounded shadow-md text-center">
+      <p class="text-2xl font-semibold mb-4">Booking Failed</p>
+      <p class="text-gray-800">There was an error processing your booking. Please try again later.</p>
+      <button mat-button color="primary" (click)="bookingFailed = false">Close</button>
+    </div>
+  </div>
+
+  <div *ngIf="!bookingConfirmed && showSummary" class="mt-6 flex justify-end">
+    <button (click)="cancelBooking()" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded mr-2">Cancel
+      Booking</button>
+    <button mat-button color="primary" (click)="confirmBooking()">Confirm Booking</button>
+  </div>
+</div>

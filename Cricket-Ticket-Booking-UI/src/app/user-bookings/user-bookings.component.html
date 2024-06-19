@@ -1,0 +1,26 @@
+<h2 style="margin: 70px;">My Bookings</h2>
+
+<ng-container *ngIf="pagedBookings.length > 0; else noBookings">
+  <div class="card-container">
+    <mat-card *ngFor="let booking of pagedBookings" class="booking-card">
+      <mat-card-header>
+        <mat-card-title>Booking ID: {{ booking.bookingId }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Match ID: {{ booking.matchId }}</p>
+        <!-- <p>Title: {{ matchDetailsMap.get(booking.matchId)?.title }}</p>
+        <p>Start Date: {{ matchDetailsMap.get(booking.matchId)?.startDateTime | date: 'short' }}</p>
+        <p>End Date: {{ matchDetailsMap.get(booking.matchId)?.endDateTime | date: 'short' }}</p> -->
+        <p>Seat ID: {{ booking.seatId }}</p>
+        <p>Booking Date: {{ booking.bookingDateTime | date: 'short' }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-container>
+
+<ng-template #noBookings>
+  <p>No bookings found.</p>
+</ng-template>
+
+<mat-paginator [pageSize]="pageSize" [length]="totalItems" (page)="onPageChange($event)">
+</mat-paginator>

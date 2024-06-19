@@ -1,0 +1,30 @@
+<div class="border-slate-100 border-b p-3 fl gap-2 justify-between" style="margin: 50px;">
+    <button mat-raised-button color="primary" class="Create" (click)="createMatch()">Create Match</button>
+
+    <table class="text-left w-full border">
+        <thead>
+            <tr class="px-5 mt-1">
+                <th class="border p-2">Match ID</th>
+                <th class="border p-2">Title</th>
+                <th class="border p-2">Start Date Time</th>
+                <th class="border p-2">End Date Time</th>
+                <th class="border p-2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let match of pagedMatches">
+                <td class="border p-3">{{ match.matchId }}</td>
+                <td class="border p-3">{{ match.title }}</td>
+                <td class="border p-3">{{ match.startDateTime | date: 'short' }}</td>
+                <td class="border p-3">{{ match.endDateTime | date: 'short' }}</td>
+                <td class="border p-3 flex items-center gap-5">
+                    <button mat-button (click)="editMatch(match)">Edit</button>
+                    <button mat-button color="warn" (click)="deleteMatch(match.matchId)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- MatPaginator for pagination -->
+    <mat-paginator [pageSize]="pageSize" [length]="totalItems" (page)="onPageChange($event)">
+    </mat-paginator>
+</div>

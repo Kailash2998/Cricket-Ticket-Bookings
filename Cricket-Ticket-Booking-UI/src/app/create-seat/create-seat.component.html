@@ -1,0 +1,28 @@
+<h2 mat-dialog-title class="text-center">Create New Seat</h2>
+<div mat-dialog-content class="create-seat-content text-center">
+  <form [formGroup]="seatForm" class="create-form">
+    <mat-form-field class="input-field">
+      <mat-label>Seat Number</mat-label>
+      <input matInput formControlName="seatNumber" placeholder="Enter seat number">
+    </mat-form-field>
+
+    <mat-form-field class="input-field">
+      <mat-label>Price</mat-label>
+      <input matInput formControlName="price" placeholder="Enter price" type="number">
+    </mat-form-field>
+
+    <mat-form-field class="input-field">
+      <mat-label>Select Match</mat-label>
+      <mat-select formControlName="matchId" placeholder="Select match">
+        <mat-option *ngFor="let match of matches" [value]="match.matchId">
+          {{ match.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions class="create-seat-actions text-center">
+  <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" [disabled]="seatForm.invalid" (click)="save()">Save</button>
+</div>
